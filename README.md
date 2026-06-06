@@ -6,7 +6,7 @@
 
 ## Overview
 
-This project works through a complete data science pipeline on the [Ethiopian Road Traffic Accident Severity Dataset](https://www.kaggle.com/) from Kaggle, which is a real-world dataset with over 12,000 accident records and 32 features. The work covers systematic preprocessing, feature engineering, exploratory data analysis, and training multiple classification models to predict accident severity.
+This project works through a complete data science pipeline on the [Ethiopian Road Traffic Accident Severity Dataset](https://www.kaggle.com/datasets/saurabhshahane/road-traffic-accidents) from Kaggle, which is a real-world dataset with over 12,000 accident records and 32 features. The work covers systematic preprocessing, feature engineering, exploratory data analysis, and training multiple classification models to predict accident severity.
 
 The emphasis throughout is on understanding *why* accidents happen and *what factors* make them more severe, rather than just optimizing a metric.
 
@@ -35,7 +35,7 @@ The objective is to evaluate how effectively accident severity can be predicted 
 
 ```mermaid
 flowchart TD
-    A[Raw Accident Dataset\n12,000+ records, 32 features] --> B[Data Cleaning\nMissing values, Duplicates]
+    A[Raw Accident Dataset\n12,316 records, 32 features] --> B[Data Cleaning\nMissing values, Duplicates]
     B --> C[Feature Engineering\nHour extraction, Time_of_Day]
     C --> D[Encoding\nLabel + One-Hot]
     D --> E[Scaling\nStandardization & Normalization]
@@ -64,13 +64,13 @@ flowchart TD
 
 ## Dataset
 
-**Source:** [Ethiopian Road Traffic Accident Severity Dataset — Kaggle](https://www.kaggle.com/)
+**Source:** [Ethiopian Road Traffic Accident Severity Dataset — Kaggle](https://www.kaggle.com/datasets/saurabhshahane/road-traffic-accidents)
 
 The dataset was collected from real accident records in Ethiopia. It includes driver demographics, vehicle information, road and light conditions, collision type, and a target variable indicating accident severity.
 
 | Attribute | Detail |
 |---|---|
-| Records | 12,000+ accident entries |
+| Records | 12,316 accident entries |
 | Features | 32 (mixed categorical and numerical) |
 | Target | Accident severity (multi-class) |
 | Origin | Real-world traffic reports, Ethiopia |
@@ -117,9 +117,9 @@ Four classifiers were trained on the preprocessed dataset using the same train-t
 
 | Model | Accuracy |
 |---|---|
-| 🥇 Random Forest | **83.79%** |
-| 🥈 Logistic Regression | 83.65% |
-| 🥉 K-Nearest Neighbors | 82.67% |
+| Random Forest | **83.79%** |
+| Logistic Regression | 83.65% |
+| K-Nearest Neighbors | 82.67% |
 | Decision Tree | 74.99% |
 
 Random Forest achieved the highest accuracy, though Logistic Regression came remarkably close, suggesting the decision boundaries in this dataset are reasonably linear once the features are encoded and scaled properly. The Decision Tree's lower score is likely a result of overfitting on training data without pruning.
@@ -137,6 +137,27 @@ Random Forest achieved the highest accuracy, though Logistic Regression came rem
 
 ---
 
+## Sample Visualizations
+
+### Correlation Heatmap
+
+![Correlation Heatmap](correlation_heatmap.png)
+
+A correlation analysis was performed on key encoded features to understand relationships between accident severity and factors such as casualty count, weather conditions, driver age group, and vehicle involvement. The heatmap provides a quick overview of feature interactions and potential predictive signals.
+
+### Accident Severity Distribution
+
+![Accident Severity Distribution](accident_severity_distribution.png)
+
+The target variable is highly imbalanced, with most accidents classified as Slight Injury cases. Understanding this distribution is important when interpreting model performance and evaluating prediction results.
+
+### Model Performance Comparison
+
+![Model Performance Comparison](model_comparison.png)
+
+Multiple machine learning models were evaluated and compared using prediction error metrics. Random Forest achieved the best overall performance, followed closely by Logistic Regression, while Decision Tree showed comparatively higher prediction error.
+
+---
 
 ## Future Improvements
 
